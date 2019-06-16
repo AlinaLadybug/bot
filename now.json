@@ -1,0 +1,15 @@
+{
+  "builds": [
+    {
+      "src": "parser.js",
+      "use": "@now/node",
+      "config": { "maxLambdaSize": "50mb" }
+    },
+    { "src": "package.json", "use": "@now/static" },
+    {
+      "src": "jsbot-2dc5b-firebase-adminsdk-qvnnp-7ebff85b34.json",
+      "use": "@now/static"
+    }
+  ],
+  "version": 2
+}

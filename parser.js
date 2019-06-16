@@ -1,36 +1,8 @@
 var jsdom = require("jsdom");
-var TelegramBot = require("node-telegram-bot-api");
-const firebase = require("firebase-admin");
-const serviceAccount = require("./jsbot-2dc5b-firebase-adminsdk-qvnnp-7ebff85b34.json");
 const { JSDOM } = jsdom;
+
 const URL =
   "https://sinoptik.ua/%D0%BF%D0%BE%D0%B3%D0%BE%D0%B4%D0%B0-%D0%BA%D0%B8%D0%B5%D0%B2";
-
-var token = "840467481:AAEJhI2lqfDQ4nRHZU__6unbYSVb6M_7Snw";
-var bot = new TelegramBot(token, { polling: true });
-firebase.initializeApp({
-  credential: firebase.credential.cert(serviceAccount),
-  databaseURL: "https://jsbot-2dc5b.firebaseio.com"
-});
-var db = firebase.firestore();
-
-function storeData(method, data) {
-  db.collection("telegram_data").add({
-    method,
-    data
-  });
-}
-
-bot.onText(/get/, async function(msg) {
-  let fromId = msg.from.id;
-  let date = msg.date;
-  console.log(date);
-  parseData().then(parsedDays => {
-    console.log(parsedDays);
-    bot.sendMessage(fromId, parsedDays);
-    storeData("get", parsedDays);
-  });
-});
 
 let prettifyDays = days => {
   let pretefiedDays = [];
@@ -75,7 +47,13 @@ let parseData = async () => {
     // console.log(day);
   }
   return prettifyDays(days);
+
+  // Навіщо ось це ?
   exports.parsedDays = prettifyDays(days);
 
   //   console.log(prettifyDays(days));
+};
+
+module.exports = {
+  parseData
 };
