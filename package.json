@@ -2,9 +2,9 @@
   "name": "js_bot",
   "version": "1.0.0",
   "description": "",
-  "main": "parser.js",
+  "main": "telegram_bot.js",
   "scripts": {
-    "start": "node parser.js",
+    "start": "node telegram_bot.js",
     "test": "echo \"Error: no test specified\" && exit 0"
   },
   "author": "",
