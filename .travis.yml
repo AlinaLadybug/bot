@@ -8,8 +8,6 @@ jobs:
   include:
     - stage: Deploy
       script: npm run deploy
-    - stage: Build
-      script: npm run build
 
 branches:
   only:

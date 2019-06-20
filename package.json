@@ -4,7 +4,6 @@
   "description": "",
   "main": "telegram_bot.js",
   "scripts": {
-    "build": "node telegram_bot.js",
     "deploy": "now -e NODE_ENV=development --token=$dev_secret"
   },
   "author": "",
