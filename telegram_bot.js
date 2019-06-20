@@ -17,7 +17,7 @@ const serviceAccount = {
 const { parseData } = require("./parser");
 
 const BOT_TOKEN = "840467481:AAEJhI2lqfDQ4nRHZU__6unbYSVb6M_7Snw";
-const url = "https://jsbot.alinaladybug23.now.sh/";
+const url = "https://bot.alinaladybug23.now.sh";
 
 const options = {
   webHook: {
@@ -70,7 +70,7 @@ module.exports = (req, res) => {
     let fromId = msg.from.id;
 
     parseData().then(parsedDays => {
-      bot.sendMessage(fromId, parsedDays);
+      // bot.sendMessage(fromId, parsedDays);
       bot.sendMessage(fromId, "blakabul");
 
       storeData("get", parsedDays);
