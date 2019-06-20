@@ -4,10 +4,12 @@ cache: npm
 before_script:
   - npm ci
 
-script:
-  - npm run deploy
-after_script:
-  - npm run build
+jobs:
+  include:
+    - stage: Deploy
+      script: npm run deploy
+    - stage: Build
+      script: npm run build
 
 branches:
   only:
