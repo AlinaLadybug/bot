@@ -20,7 +20,7 @@ let prettifyDays = days => {
 let parseData = async () => {
   const dom = await JSDOM.fromURL(URL, {
     includeNodeLocations: true,
-    storageQuota: 10000000,
+    storageQuota: 100,
     resources: "usable"
   });
 
@@ -47,11 +47,6 @@ let parseData = async () => {
     // console.log(day);
   }
   return prettifyDays(days);
-
-  // Навіщо ось це ?
-  exports.parsedDays = prettifyDays(days);
-
-  //   console.log(prettifyDays(days));
 };
 
 module.exports = {

@@ -26,7 +26,7 @@ const options = {
 };
 
 const bot = new TelegramBot(BOT_TOKEN);
-bot.setWebHook(`${url}/bot${BOT_TOKEN}`);
+bot.setWebHook(url);
 firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: "https://jsbot-2dc5b.firebaseio.com"
@@ -34,7 +34,8 @@ firebase.initializeApp({
 const db = firebase.firestore();
 
 function storeData(method, data) {
-  db.collection("telegram_data").add({
+  // throw { method, data };
+  return db.collection('telegram_data').add({
     method,
     data
   });
@@ -60,19 +61,17 @@ module.exports = (req, res) => {
     data += chunk;
   });
 
-  req.on("end", () => {
+  req.on("end", async () => {
     const parsedUpdate = JSON.parse(data);
     const msg = parsedUpdate.message;
     let fromId = msg.from.id;
-    let date = msg.date;
 
-    console.log(date);
-
-    parseData().then(parsedDays => {
-      console.log(parsedDays);
-      bot.sendMessage(fromId, parsedDays);
-      storeData("get", parsedDays);
-    });
+    const parsedDays = await parseData();
+    await bot.sendMessage(fromId, parsedDays);
+    try {
+      await storeData("get", parsedDays);
+    }
+    catch (e) {}
 
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end();
