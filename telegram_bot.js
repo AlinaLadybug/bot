@@ -55,8 +55,6 @@ bot.onText(/get/, async msg => {
   });
 });
 
-const http = require("http");
-
 module.exports = (req, res) => {
   // http
   //   .createServer((req, res) => {

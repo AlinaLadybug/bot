@@ -5,9 +5,9 @@ before_script:
   - npm ci
 
 script:
-  - npm run build
-after_script:
   - npm run deploy
+after_script:
+  - npm run build
 
 branches:
   only:
