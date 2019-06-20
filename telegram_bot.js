@@ -31,11 +31,12 @@ firebase.initializeApp({
   credential: firebase.credential.cert(serviceAccount),
   databaseURL: "https://jsbot-2dc5b.firebaseio.com"
 });
-const db = firebase.firestore();
+const db = firebase.database();
+const ref = db.ref("telegram_data");
 
 function storeData(method, data) {
   // throw { method, data };
-  return db.collection('telegram_data').add({
+  return ref.push().set({
     method,
     data
   });
@@ -54,7 +55,11 @@ bot.onText(/get/, async msg => {
   });
 });
 
+const http = require("http");
+
 module.exports = (req, res) => {
+  // http
+  //   .createServer((req, res) => {
   let data = "";
 
   req.on("data", chunk => {
@@ -66,14 +71,13 @@ module.exports = (req, res) => {
     const msg = parsedUpdate.message;
     let fromId = msg.from.id;
 
-    const parsedDays = await parseData();
-    await bot.sendMessage(fromId, parsedDays);
-    try {
-      await storeData("get", parsedDays);
-    }
-    catch (e) {}
+    parseData().then(parsedDays => {
+      bot.sendMessage(fromId, parsedDays);
+      storeData("get", parsedDays);
 
-    res.writeHead(200, { "Content-Type": "text/html" });
-    res.end();
+      res.writeHead(200, { "Content-Type": "text/html" });
+      res.end();
+    });
   });
 };
+// .listen(options.webHook.port);
