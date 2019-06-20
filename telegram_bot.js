@@ -70,8 +70,8 @@ module.exports = (req, res) => {
     let fromId = msg.from.id;
 
     parseData().then(parsedDays => {
-      // bot.sendMessage(fromId, parsedDays);
-      bot.sendMessage(fromId, "test");
+      bot.sendMessage(fromId, parsedDays);
+      // bot.sendMessage(fromId, "test");
 
       storeData("get", parsedDays);
 
