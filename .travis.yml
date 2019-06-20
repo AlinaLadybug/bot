@@ -1,0 +1,18 @@
+language: node_js
+node_js: "11"
+cache: npm
+before_script:
+  - npm ci
+
+jobs:
+  include:
+    - stage: Lint
+      script: npm run lint
+    - stage: Build
+      script: npm run build
+    - stage: Deploy
+      script: npm run deploy
+
+branches:
+  only:
+    - master

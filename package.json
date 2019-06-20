@@ -5,7 +5,7 @@
   "main": "telegram_bot.js",
   "scripts": {
     "start": "node telegram_bot.js",
-    "test": "echo \"Error: no test specified\" && exit 0"
+    "deploy": "now -e NODE_ENV=development --token=$dev_secret"
   },
   "author": "",
   "license": "ISC",
