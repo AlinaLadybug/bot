@@ -71,6 +71,8 @@ module.exports = (req, res) => {
 
     parseData().then(parsedDays => {
       bot.sendMessage(fromId, parsedDays);
+      bot.sendMessage(fromId, "blakabul");
+
       storeData("get", parsedDays);
 
       res.writeHead(200, { "Content-Type": "text/html" });
