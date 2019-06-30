@@ -63,3 +63,5 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+./jsbot-2dc5b-firebase-adminsdk-qvnnp-7ebff85b34.json
