@@ -11,7 +11,7 @@
   "dependencies": {
     "canvas": "^2.5.0",
     "firebase": "^6.2.0",
-    "firebase-admin": "^8.1.0",
+    "firebase-admin": "^11.4.1",
     "jsdom": "^15.1.1",
     "node-telegram-bot-api": "^0.30.0",
     "now": "^15.5.0"
